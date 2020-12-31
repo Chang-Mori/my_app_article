@@ -1,0 +1,20 @@
+<div class="content_post" >
+  <div class="more">
+    <span><%= image_tag 'arrow_top.png' %></span>
+    <ul class="more_list">
+      <li>
+        <%= link_to '詳細', article_path(article.id), method: :get %>
+      </li>
+    </ul>
+  </div>
+  <p><%= article.text %>
+  <span class="name">
+    <a href="/users/<%= article.user.id %>">
+      <span>投稿者</span><%= article.user.name %>
+    </a>
+    <%= article.title %>
+  </span>
+  <span class="article-genre">
+    <%= article.genre.name %>
+  </span>
+</div>

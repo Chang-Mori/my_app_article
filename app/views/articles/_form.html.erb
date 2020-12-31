@@ -1,0 +1,6 @@
+<%= form_with(model: article, local: true) do |form| %>
+  <%= form.text_field :title, placeholder: "Title" %>
+  <%= form.text_area :text, placeholder: "text", rows: "10" %>
+  <%= form.collection_select(:genre_id, Genre.all, :id, :name, {}, {class:"genre-select"}) %>
+  <%= form.submit "SEND" %>
+<% end %>
