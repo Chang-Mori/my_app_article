@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'ユーザー新規登録とログイン', type: :system do
   before do
-    @user = FactoryBot.build(:user)
+    @user_a = FactoryBot.build(:user)
+    @user = FactoryBot.create(:user)
   end
 
   describe 'ユーザー新規登録' do
@@ -15,9 +16,9 @@ RSpec.describe 'ユーザー新規登録とログイン', type: :system do
         # 新規登録ページへ移動する
         visit new_user_registration_path
         # ユーザー情報を入力する
-        fill_in 'Name', with: @user.name
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
+        fill_in 'Name', with: @user_a.name
+        fill_in 'Email', with: @user_a.email
+        fill_in 'Password', with: @user_a.password
         # サインアップボタンを押すとユーザーモデルのカウントが1上がることを確認する
         expect{
           find('input[name="commit"]').click
