@@ -20,4 +20,5 @@
   <div class="article-date">
     <%= l article.created_at %>
   </div>
+  <%= image_tag article.image.variant(resize: '200x200'), class: 'article-image' if article.image.attached? %>
 </div>

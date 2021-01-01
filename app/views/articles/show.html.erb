@@ -20,6 +20,7 @@
       </a>
     <%= @article.title %>
     </span>
+    <%= image_tag @article.image.variant(resize: '200x200'), class: 'article-image' if @article.image.attached? %>
   </div>
   <div class="container">
     <div class="comments">
