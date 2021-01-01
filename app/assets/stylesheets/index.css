@@ -1,4 +1,5 @@
-div.contents.row div.content_post span.article-genre {
+div.contents.row div.content_post span.article-genre,
+div.contents.row div.content_post div.article-date {
   position: absolute;
   right: 30px;
   bottom: 10px;

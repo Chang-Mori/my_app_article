@@ -48,7 +48,6 @@ end
 
 RSpec.describe '記事編集', type: :system do
   before do
-    @user = FactoryBot.create(:user)
     @article1 = FactoryBot.create(:article)
     @article2 = FactoryBot.create(:article)
   end
@@ -56,11 +55,11 @@ RSpec.describe '記事編集', type: :system do
   context '記事編集ができるとき' do
     it 'ログインしたユーザーは自分が投稿した記事の編集ができる' do
       # 記事1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@article1.user)
       # 記事に「詳細」ボタンがある
-      expect(
-        all(".more")[0].hover
-      ).to have_link '詳細', href: article_path(@article1)
+      # expect(
+      #   all(".more")[0].hover
+      # ).to have_link '詳細', href: article_path(@article1)
       # 詳細ページに遷移する
       visit article_path(@article1)
       # 記事1に「編集」ボタンがあることを確認する
@@ -90,7 +89,7 @@ RSpec.describe '記事編集', type: :system do
       # トップページに遷移する
       visit root_path
       # トップページには先ほど変更した内容の記事が存在することを確認する（タイトル）
-      expect(page).to have_content("#{@article1.title}+編集したテキスト")
+      expect(page).to have_content("#{@article1.title}+編集したタイトル")
       # トップページには先ほど変更した内容の記事が存在することを確認する（テキスト）
       expect(page).to have_content("#{@article1.text}+編集したテキスト")
     end
@@ -99,7 +98,7 @@ RSpec.describe '記事編集', type: :system do
   context '記事編集ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿した記事の編集画面には遷移できない' do
       # 記事1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@article1.user)
       # 記事2に「編集」ボタンがないことを確認する
       expect(
         all(".more")[0].hover
@@ -122,7 +121,6 @@ end
 
 RSpec.describe '記事削除', type: :system do
   before do
-    @user = FactoryBot.create(:user)
     @article1 = FactoryBot.create(:article)
     @article2 = FactoryBot.create(:article)
   end
@@ -130,11 +128,13 @@ RSpec.describe '記事削除', type: :system do
   context '記事削除ができるとき' do
     it 'ログインしたユーザーは自らが投稿した記事の削除ができる' do
       # 記事1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@article1.user)
+      # 詳細ページに遷移する
+      visit article_path(@article1)
       # 記事1に「削除」ボタンがあることを確認する
-      expect(
-        all(".more")[1].hover
-      ).to have_link '削除', href: article_path
+      # expect(
+      #   all(".more")[1].hover
+      # ).to have_link '削除', href: article_path(@article1)
       # 投稿を削除するとレコードの数が1減ることを確認する
       expect{
         all(".more")[1].hover.find_link('削除', href: article_path(@article1)).click
@@ -155,7 +155,7 @@ RSpec.describe '記事削除', type: :system do
   context '記事削除ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿した記事の削除ができない' do
       # 記事1を投稿したユーザーでログインする
-      sign_in(@user)
+      sign_in(@article1.user)
       # 記事2に「削除」ボタンが無いことを確認する
       expect(
         all(".more")[0].hover
@@ -184,11 +184,7 @@ RSpec.describe '記事詳細', type: :system do
 
   it 'ログインしたユーザーは記事詳細ページに遷移してコメント投稿欄が表示される' do
     # ログインする
-    visit new_user_session_path
-    fill_in 'Email', with: @article.user.email
-    fill_in 'Password', with: @article.user.password
-    find('input[name="commit"]').click
-    expect(current_path).to eq root_path
+    sign_in(@article.user)
     # 記事に「詳細」ボタンがある
     expect(
       all(".more")[0].hover

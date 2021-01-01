@@ -463,12 +463,12 @@ ul li {
 }
 
 .row {
-  width: 100%;
-  margin-left: auto;
+  width: calc(100vw - 300px);
+  margin-left: 300px;
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 660px;
+  max-width: 1000px;
   *zoom: 1;
 }
 
@@ -1045,15 +1045,31 @@ footer p {
 }
 
 .search-form {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   padding-top: 32px;
 }
 
 .search-form .search-input {
-  width: 30%;
+  width: 90%;
+  margin-left: 10px;
   margin-right: 10px;
 }
 
 .search-form .search-btn {
-  width: 10%;
+  width: 60%;
+  margin-left: 10px;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.side-bar {
+  background-color: #253141;
+  width: 270px;
+  height: 100vh;
+  position: fixed;
+  z-index: 5;
 }
