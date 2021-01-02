@@ -1,6 +1,7 @@
 <div class="contents row">
   <div class="container">
     <h3>投稿する</h3>
+    <%= render 'layouts/error_messages', model: @article %>
     <%= render partial: "form", locals: { article: @article } %>
   </div>
 </div>
