@@ -12,8 +12,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article = ArticlesTag.new(article_params)
-    if @article.save
-      return redirect_to root_path
+    if @article.valid?
+      @article.save
+      return redirect_to articles_path
     else
       render :new
     end
@@ -39,7 +40,16 @@ class ArticlesController < ApplicationController
 
   def search
     @articles = SearchArticlesService.search(params[:keyword])
+    return nil if params[:keyword] == ""
+    tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
+    render json:{ keyword: tag}
   end
+
+  # def search(tag)
+  #   return nil if params[:keyword] == ""
+  #   tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
+  #   render json:{ keyword: tag}
+  # end
 
   private
   def article_params
