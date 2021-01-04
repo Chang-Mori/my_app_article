@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :set_article, only: [:show, :destroy]
   before_action :move_to_index, except: [:index, :show, :search]
 
   def index
@@ -7,13 +7,13 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = ArticlesTag.new
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = ArticlesTag.new(article_params)
     if @article.save
-      redirect_to root_path
+      return redirect_to root_path
     else
       render :new
     end
@@ -25,9 +25,11 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+    @article = ArticlesTag.new(article[:id])
   end
 
   def update
+    @article = ArticlesTag.find(params[:id])
     @article.update(article_params)
   end
 
@@ -41,11 +43,11 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :text, :genre_id, images: []).merge(user_id: current_user.id)
+    params.require(:articles_tag).permit(:title, :text, :genre_id, :tag_name, images: []).merge(user_id: current_user.id)
   end
 
   def set_article
-    @article =Article.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   def move_to_index

@@ -4,9 +4,6 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many   :comments
   has_many_attached :images
-
-  validates :title, :text, presence: true
-
-  validates :genre_id, numericality: { other_than: 1 }
-
+  has_many   :article_tag_relations
+  has_many   :tags, through: :article_tag_relations, dependent: :destroy
 end

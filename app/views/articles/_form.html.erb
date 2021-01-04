@@ -1,11 +1,13 @@
-<%= form_with(model: article, local: true) do |form| %>
+<%= form_with model: @article, url: articles_path, local: true do |form| %>
   <%= form.text_field :title, placeholder: "Title" %>
   <%= form.text_area :text, placeholder: "text", rows: "10" %>
+  <%= form.label :tag_name, "タグ" %>
+  <%= form.text_field :tag_name, class:"input-tag"%>
   <%= form.collection_select(:genre_id, Genre.all, :id, :name, {}, {class:"genre-select"}) %>
   <%= form.file_field :images, name: 'article[images][]', class: 'hidden' %>
   <div id="image-list"></div>
-  <% @article.images.each do |image| %>
-    <%= image_tag image.variant(resize: '200x200'), class: 'article-images' %>
-  <% end %>
+  <%# <% @article.images.each do |image| %>
+  <%#   <%= image_tag image.variant(resize: '200x200'), class: 'article-images' %>
+  <%# <% end %>
   <%= form.submit "SEND" %>
 <% end %>

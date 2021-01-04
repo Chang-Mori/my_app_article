@@ -23,4 +23,7 @@
   <% article.images.each do |image| %>
       <%= image_tag image.variant(resize: '200x200'), class: 'article-images' %>
   <% end %>
+  <% article.tags.each do |tag| %>
+    #<%= tag.tag_name %>
+  <% end %>
 </div>
