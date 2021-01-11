@@ -27,6 +27,13 @@
       #<%= tag.tag_name %>
     <% end %>
   </div>
+
+  <% @article.likes.each do |article| %>
+    <tr id="article_<%= article.id %>">
+      <%= render 'likes/like', article: article %>
+    </tr>
+  <% end %>
+
   <div class="container">
     <div class="comments">
       <h4>＜コメント一覧＞</h4>

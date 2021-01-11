@@ -20,6 +20,8 @@
   <div class="article-date">
     <%= l article.created_at %>
   </div>
+
+
   <% article.images.each do |image| %>
       <%= image_tag image.variant(resize: '200x200'), class: 'article-images' %>
   <% end %>
@@ -27,3 +29,5 @@
     #<%= tag.tag_name %>
   <% end %>
 </div>
+
+  <%= render partial: 'likes/like',locals: { article: article } %>

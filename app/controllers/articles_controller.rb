@@ -1,9 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :destroy]
   before_action :move_to_index, except: [:index, :show, :search]
+  before_action :search_article, only: [:index, :search]
 
   def index
     @articles = Article.includes(:user).order("created_at DESC")
+    set_article_column
   end
 
   def new
@@ -35,14 +37,13 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
+    @article.destroy data: { confirm: "削除してもよろしいですか？" }
   end
 
   def search
-    @articles = SearchArticlesService.search(params[:keyword])
-    return nil if params[:keyword] == ""
-    tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
-    render json:{ keyword: tag}
+    # @articles = SearchArticlesService.search(params[:keyword])
+    @articles = @a.result.includes(:title)
+
   end
 
   # def search(tag)
@@ -65,5 +66,12 @@ class ArticlesController < ApplicationController
       redirect_to action: :index
     end
   end
-  
+
+  def search_article
+    @a = Article.ransack(params[:q])
+  end
+
+  def set_article_column
+    @article_title = Article.select("title").distinct
+  end
 end
