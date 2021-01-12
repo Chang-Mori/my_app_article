@@ -1,15 +1,9 @@
 class TagsController < ApplicationController
-  # def new
-  #   @tag = Tag.new
-  # end
 
-  # def create
-  #   @tag = Tag.create(tag_params)
-  # end
+  def search
+    # return nil if params[:keyword] == ""
+    # tag = Tag.where(['tag_name LIKE ?', "%#{params[:keyword]}%"] )
+    # render json:{ keyword: tag}
+  end
 
-  # private
-
-  # def tag_params
-  #   params.require(:tag).permit(:name).marge(article_id: params[:article_id])
-  # end
 end

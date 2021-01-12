@@ -10,6 +10,7 @@ require("channels")
 require('../articles')
 require('./preview')
 require('./tag')
+require('./tabmenu')
 
 var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;

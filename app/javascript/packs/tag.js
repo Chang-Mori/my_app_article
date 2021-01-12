@@ -8,9 +8,9 @@ if (location.pathname.match("articles/new")){
       XHR.responseType = "json";
       XHR.send();
       XHR.onload = () => {
-        const searchResult = document.getElementById("search-result");
-        searchResult.innerHTML = ""
-        if (XHR.response) {
+        // const searchResult = document.getElementById("search-result");
+        // searchResult.innerHTML = ""
+        // if (XHR.response) {
           const tagName = XHR.response.keyword;
           tagName.forEach((tag) => {
             const childElement = document.createElement("div");
@@ -18,13 +18,13 @@ if (location.pathname.match("articles/new")){
             childElement.setAttribute("id", tag.id);
             childElement.innerHTML = tag.tag_name;
             searchResult.appendChild(childElement);
-            const clickElement = document.getElementById(tag.id);
-            clickElement.addEventListener("click", () => {
-              document.getElementById("articles_tag_tag_name").value = clickElement.textContent;
-              clickElement.remove();
-            });
+        //     const clickElement = document.getElementById(tag.id);
+        //     clickElement.addEventListener("click", () => {
+        //       document.getElementById("articles_tag_tag_name").value = clickElement.textContent;
+        //       clickElement.remove();
+        //     });
           });
-        };
+        // };
       };
     });
   });

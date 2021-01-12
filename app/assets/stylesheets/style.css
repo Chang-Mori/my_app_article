@@ -1073,3 +1073,46 @@ footer p {
   position: fixed;
   z-index: 5;
 }
+
+.side-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  font-size: 12px;
+
+}
+
+.side-menu li {
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  padding: 8px 0;
+  color: rgb(11, 231, 198);
+  text-decoration: none;
+  border-radius: 10px 10px 0 0;
+  z-index: 6;
+}
+
+.side-menu li .tab.side-active {
+  background: #333;
+  color: #fff;
+  display: block;
+}
+
+.side-menu li .tab:not(.side-active):hover {
+  opacity: 0.3;
+  transition: opacity 0.5s;
+}
+
+.tab-content.side-show {
+  background: #333;
+  color: #fff;
+  min-height: 150px;
+  padding: 12px;
+  display: block;
+}
+
+.tab-content {
+  display: none;
+}
