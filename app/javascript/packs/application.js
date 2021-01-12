@@ -11,6 +11,7 @@ require('../articles')
 require('./preview')
 require('./tag')
 require('./tabmenu')
+require('./hamburgerMenu.js')
 
 var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;

@@ -1072,6 +1072,8 @@ footer p {
   height: 100vh;
   position: fixed;
   z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
 .side-menu {
@@ -1115,4 +1117,31 @@ footer p {
 
 .tab-content {
   display: none;
+}
+
+#open {
+  font-size: 32px;
+  line-height: 35px;
+  cursor: pointer;
+  z-index: 6;
+}
+
+#open.hide {
+  display: none;
+}
+
+#close {
+  /* display: block; */
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.side-bar.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 600px) {
+
+  
 }
