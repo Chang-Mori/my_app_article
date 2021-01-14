@@ -464,8 +464,8 @@ ul li {
 
 .row {
   width: calc(100vw - 300px);
-  margin-left: 300px;
-  margin-right: auto;
+  margin-left: 30px;
+  margin-right: 30px;
   margin-top: 0;
   margin-bottom: 0;
   max-width: 1000px;
@@ -1141,7 +1141,28 @@ footer p {
   pointer-events: auto;
 }
 
+.pc-side-bar {
+  display: none;
+  background-color: #57C3E9;
+  width: 270px;
+  height: 100vh;
+  position: fixed;
+  z-index: 6;
+  /* opacity: 0;
+  transition: opacity 0.5s; */
+}
+
 @media (min-width: 600px) {
 
-  
+  .side-bar, #open {
+    display: none;
+  }
+
+  .pc-side-bar {
+    display: block;
+  }
+
+  .row {
+    margin-left: 300px;
+  }
 }

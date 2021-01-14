@@ -33,11 +33,22 @@
           </div>
         <% end %>
       </div>
+      
     </header>
       <%# <div class="overlay"> %>
 
+
     <div class="wrapper">
-    <span class="material-icons" id="open">menu</span>
+      <div class="pc-side-bar">
+        <ul class="side-menu">
+          <li><%= link_to "ランキング", "#", id: "ranking"%></li>
+          <li><%= link_to "タイトル検索","#", id: "title-search"%></li>
+          <li><%= link_to "タグ検索", "#", id: "tag-search"%></li>
+        </ul>
+      </div>
+
+
+      <span class="material-icons" id="open">menu</span>
 
       <div class="side-bar">
       <span class="material-icons" id="close">close</span>
