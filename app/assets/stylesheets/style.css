@@ -1152,6 +1152,37 @@ footer p {
   transition: opacity 0.5s; */
 }
 
+.menu {
+  background-color: purple;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+.menu:hover,
+.menu:active,
+.menu.is-active {
+  background-color: black;
+}
+.ac-contents {
+  text-align: center;
+  line-height: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition-duration: 0.4s;
+}
+
+.ac-contents.is-open {
+  border: 1px solid black;
+  padding: 10px;
+  line-height: normal;
+  height: auto;
+  opacity: 1;
+}
+
 @media (min-width: 600px) {
 
   .side-bar, #open {

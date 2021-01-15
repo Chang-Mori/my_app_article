@@ -40,10 +40,16 @@
 
     <div class="wrapper">
       <div class="pc-side-bar">
-        <ul class="side-menu">
-          <li><%= link_to "ランキング", "#", id: "ranking"%></li>
-          <li><%= link_to "タイトル検索","#", id: "title-search"%></li>
-          <li><%= link_to "タグ検索", "#", id: "tag-search"%></li>
+        <ul class="side-accordion-menu">
+          <li><%= link_to "ランキング", "#", id: "ranking", class: "menu ac-menu" %>
+            <p class="ac-contents">ランキング</p>
+          </li>
+          <li><%= link_to "タイトル検索","#", id: "title-search", class: "menu ac-menu" %>
+            <p class="ac-contents">タイトル検索</p>
+          </li>
+          <li><%= link_to "タグ検索", "#", id: "tag-search" , class: "menu ac-menu" %>
+            <p class="ac-contents">タグ検索</p>
+          </li>
         </ul>
       </div>
 
