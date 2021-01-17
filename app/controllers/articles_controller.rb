@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.includes(:user).order("created_at DESC")
     set_article_column
+    @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(5).pluck(:article_id))
   end
 
   def new

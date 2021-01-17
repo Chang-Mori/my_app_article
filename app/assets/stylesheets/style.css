@@ -1167,7 +1167,7 @@ footer p {
   background-color: black;
 }
 .ac-contents {
-  text-align: center;
+  text-align: left;
   line-height: 0;
   height: 0;
   overflow: hidden;
