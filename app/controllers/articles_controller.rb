@@ -2,11 +2,11 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :destroy]
   before_action :move_to_index, except: [:index, :show, :search]
   before_action :search_article, only: [:index, :search]
+  before_action :set_article_rank, only: [:index, :new, :show]
 
   def index
     @articles = Article.includes(:user).order("created_at DESC")
     set_article_column
-    @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(5).pluck(:article_id))
   end
 
   def new
@@ -74,5 +74,9 @@ class ArticlesController < ApplicationController
 
   def set_article_column
     @article_title = Article.select("title").distinct
+  end
+
+  def set_article_rank
+    @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(5).pluck(:article_id))
   end
 end

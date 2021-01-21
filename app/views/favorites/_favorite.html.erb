@@ -1,0 +1,15 @@
+<div class="favorite" id="favorite-link-<%= article.id %>">
+  <% if !Favorite.exists?(user: current_user, article_id: article.id) %>
+    <%= link_to article_favorites_path(article), method: :post, remote: true, class: "favorite-btn favorite-post" do %>
+      <span class="material-icons">
+        bookmark
+      </span><%= article.favorites.length %>
+    <% end %>
+  <% else %>
+    <%= link_to article_favorite_path(article_id: article.id, id: article.favorites[0].id), method: :delete, remote: true, class: "favorite-btn favorite-delete" do %>
+      <span class="material-icons">
+        turned_in_not
+      </span><%= article.favorites.length %>
+    <% end %>
+  <% end %>
+</div>

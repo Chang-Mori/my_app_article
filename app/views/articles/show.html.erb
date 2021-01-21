@@ -28,11 +28,8 @@
     <% end %>
   </div>
 
-  <% @article.likes.each do |article| %>
-    <tr id="article_<%= article.id %>">
-      <%= render 'likes/like', article: article %>
-    </tr>
-  <% end %>
+  <%= render partial: 'likes/like',locals: { article: @article } %>
+  <%= render partial: 'favorites/favorite', locals: { article: @article } %>
 
   <div class="container">
     <div class="comments">

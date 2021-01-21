@@ -8,4 +8,5 @@ class Article < ApplicationRecord
   has_many   :tags, through: :article_tag_relations, dependent: :destroy
   has_many   :likes
   has_many   :liking_users, through: :likes, source: :user
+  has_many   :favorites, dependent: :destroy
 end

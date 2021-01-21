@@ -36,72 +36,72 @@
       
     </header>
       <%# <div class="overlay"> %>
-
-
-    <div class="wrapper">
-      <div class="pc-side-bar">
-        <ul class="side-accordion-menu">
-          <li><%= link_to "ランキング", "#", id: "ranking", class: "menu ac-menu" %>
-            <div class="ac-contents">ranking
-            <% @all_ranks.each.with_index(1) do |article, i| %>
-              <p>
-              第<%= i %>位 <%= link_to article.title, article_path(article.id), method: :get %>
-              </p>
-            <% end %>
-            </div>
-          </li>
-          <li><%= link_to "タイトル検索","#", id: "title-search", class: "menu ac-menu" %>
-            <p class="ac-contents">タイトル検索</p>
-          </li>
-          <li><%= link_to "タグ検索", "#", id: "tag-search" , class: "menu ac-menu" %>
-            <p class="ac-contents">タグ検索</p>
-          </li>
-        </ul>
-      </div>
-
-
-      <span class="material-icons" id="open">menu</span>
-
-      <div class="side-bar">
-      <span class="material-icons" id="close">close</span>
-        <ul class="side-menu">
-          <li><%= link_to "ランキング", "#", id: "ranking", class: "tab side-active"%></li>
-          <li><%= link_to "タイトル検索","#", id: "title-search", class: "tab"%></li>
-          <li><%= link_to "タグ検索", "#", id: "tag-search", class: "tab"%></li>
-        </ul>
-
-        <section class="tab-content side-show" id="ranking">
-          いいね数ランキング
+    <% if user_signed_in? %>
+      <div class="wrapper">
+        <div class="pc-side-bar">
+          <ul class="side-accordion-menu">
+            <li><%= link_to "ランキング", "#", id: "ranking", class: "menu ac-menu" %>
+              <div class="ac-contents">ranking
               <% @all_ranks.each.with_index(1) do |article, i| %>
-              <p>
-              第<%= i %>位 <%= link_to article.title, article_path(article.id), method: :get %>
-              </p>
+                <p>
+                第<%= i %>位 <%= link_to article.title, article_path(article.id), method: :get %>
+                </p>
+              <% end %>
+              </div>
+            </li>
+            <li><%= link_to "タイトル検索","#", id: "title-search", class: "menu ac-menu" %>
+              <p class="ac-contents">タイトル検索</p>
+            </li>
+            <li><%= link_to "タグ検索", "#", id: "tag-search" , class: "menu ac-menu" %>
+              <p class="ac-contents">タグ検索</p>
+            </li>
+          </ul>
+        </div>
+
+
+        <span class="material-icons" id="open">menu</span>
+
+        <div class="side-bar">
+        <span class="material-icons" id="close">close</span>
+          <ul class="side-menu">
+            <li><%= link_to "ランキング", "#", id: "ranking", class: "tab side-active"%></li>
+            <li><%= link_to "タイトル検索","#", id: "title-search", class: "tab"%></li>
+            <li><%= link_to "タグ検索", "#", id: "tag-search", class: "tab"%></li>
+          </ul>
+
+          <section class="tab-content side-show" id="ranking">
+            いいね数ランキング
+                <% @all_ranks.each.with_index(1) do |article, i| %>
+                <p>
+                第<%= i %>位 <%= link_to article.title, article_path(article.id), method: :get %>
+                </p>
+              <% end %>
+          </section>
+          <section class="tab-content" id="title-search">
+            <%= form_with(url: search_articles_path, local: true, method: :get, class: "search-form") do |form| %>
+              <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
+              <%= form.submit "検索", class: "search-btn" %>
             <% end %>
-        </section>
-        <section class="tab-content" id="title-search">
-          <%= form_with(url: search_articles_path, local: true, method: :get, class: "search-form") do |form| %>
-            <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
-            <%= form.submit "検索", class: "search-btn" %>
-          <% end %>
-        </section>
-        <section class="tab-content"></section>
-        <%#<%= search_form_for @a, url: search_articles_path do |f| %>
-          <%#<%= f.label :title_eq, 'タイトル名' %>
-          <%#<%= f.collection_select :title_eq, @article_title, :title, :title, include_blank: '指定なし' %>
-          <%#<br>
-          <%= f.submit '検索する' %>
-          <%#<br>
-          <% @articles.each do |article| %>
-          <%#<td>
-          <br>
-          <li>
-            <% article.title %>
-            <%#<% article.genre %>
-            <%#<% article.tags %>
-          <%#</li>
-          <% end %>
-        <%#<% end %>
-      </div>
+          </section>
+          <section class="tab-content"></section>
+          <%#<%= search_form_for @a, url: search_articles_path do |f| %>
+            <%#<%= f.label :title_eq, 'タイトル名' %>
+            <%#<%= f.collection_select :title_eq, @article_title, :title, :title, include_blank: '指定なし' %>
+            <%#<br>
+            <%= f.submit '検索する' %>
+            <%#<br>
+            <% @articles.each do |article| %>
+            <%#<td>
+            <br>
+            <li>
+              <% article.title %>
+              <%#<% article.genre %>
+              <%#<% article.tags %>
+            <%#</li>
+            <% end %>
+          <%#<% end %>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
   </body>

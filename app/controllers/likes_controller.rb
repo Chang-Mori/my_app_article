@@ -3,8 +3,10 @@ class LikesController < ApplicationController
   before_action :article_params
 
   def like
-    like = current_user.likes.new(article_id: @article.id)
-    like.save
+    if @article.user_id != current_user.id
+      like = current_user.likes.new(article_id: @article.id)
+      like.save
+    end
   end
 
   def unlike
