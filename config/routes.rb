@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   end
   resources :users, only: :show do
     get :favorites, on: :collection
+    get :followings, :followers, on: :member
   end
+  resources :relationships, only: [:create, :destroy]
 
   post 'like/:article_id' ,to: 'likes#like', as: 'like'
   delete 'like/:article_id', to: 'likes#unlike', as: 'unlike'

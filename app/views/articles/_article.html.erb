@@ -1,3 +1,22 @@
+<div class="pc-side-bar">
+  <ul class="side-accordion-menu">
+    <li><%= link_to "ランキング", "#", id: "ranking", class: "menu ac-menu" %>
+      <div class="ac-contents">ranking
+      <% @all_ranks.each.with_index(1) do |article, i| %>
+        <p>
+        第<%= i %>位 <%= link_to article.title, article_path(article.id), method: :get %>
+        </p>
+      <% end %>
+      </div>
+    </li>
+    <li><%= link_to "タイトル検索","#", id: "title-search", class: "menu ac-menu" %>
+      <p class="ac-contents">タイトル検索</p>
+    </li>
+    <li><%= link_to "タグ検索", "#", id: "tag-search" , class: "menu ac-menu" %>
+      <p class="ac-contents">タグ検索</p>
+    </li>
+  </ul>
+</div>
 <div class="content_post" >
   <div class="more">
     <span><%= image_tag 'arrow_top.png' %></span>
@@ -32,3 +51,4 @@
 
   <%= render partial: 'likes/like',locals: { article: article } %>
   <%= render partial: 'favorites/favorite', locals: { article: article } %>
+

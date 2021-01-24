@@ -30,6 +30,7 @@
 
   <%= render partial: 'likes/like',locals: { article: @article } %>
   <%= render partial: 'favorites/favorite', locals: { article: @article } %>
+  <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
 
   <div class="container">
     <div class="comments">

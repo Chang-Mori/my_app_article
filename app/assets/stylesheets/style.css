@@ -1064,6 +1064,7 @@ footer p {
 
 .wrapper {
   display: flex;
+  flex-direction: column;
 }
 
 .side-bar {
@@ -1199,6 +1200,22 @@ footer p {
 #scroll-top:hover {
   cursor: pointer;
   opacity: 0.7;
+}
+
+.follow-lists {
+  position: absolute;
+  left: 280px;
+}
+
+.contents-title {
+  /* display: block;
+  height: 100vh;
+  width: 100vh; */
+}
+
+.title-image {
+  height: 100%;
+  width: 100%;
 }
 
 @media (min-width: 600px) {

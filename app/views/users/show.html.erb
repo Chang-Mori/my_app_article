@@ -44,5 +44,9 @@
     </div>
     <%end%>
   <%end%>
+  <p><%= @name %>さんのフォロー一覧</p>
+  <%= link_to "フォロー: #{@user.followings.count}", followings_user_path(@user.id) %>
+  <p><%= @name %>さんのフォロワー一覧</p>
+  <%= link_to "フォロワー: #{@user.followers.count}", followers_user_path(@user.id)%>
 <%# </div> %>
 </div>
