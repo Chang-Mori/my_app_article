@@ -1,9 +1,29 @@
 <div class="wrapper contents-title">
   <%= image_tag "mechanics-3258935_1280.jpg" %>
 </div>
-
-<div class="contents row">
-  <%= article_lists(@articles) %>
+<div class="content_post_area">
+  <div class="pc-side-bar">
+    <ul class="side-accordion-menu">
+      <li><%= link_to "ランキング", "#", id: "ranking", class: "menu ac-menu", remote: true %>
+        <div class="ac-contents">ranking
+        <% @all_ranks.each.with_index(1) do |article, i| %>
+          <p>
+          第<%= i %>位 <%= link_to article.title, article_path(article.id), method: :get %>
+          </p>
+        <% end %>
+        </div>
+      </li>
+      <li><%= link_to "タイトル検索","#", id: "title-search", class: "menu ac-menu", remote: true %>
+        <p class="ac-contents">タイトル検索</p>
+      </li>
+      <li><%= link_to "タグ検索", "#", id: "tag-search" , class: "menu ac-menu", remote: true %>
+        <p class="ac-contents">タグ検索</p>
+      </li>
+    </ul>
+  </div>
+  <div class="contents row">
+    <%= article_lists(@articles) %>
+  </div>
 </div>
 
 <div id="scroll-top">TOP</div>
