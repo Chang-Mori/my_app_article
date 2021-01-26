@@ -1234,6 +1234,44 @@ footer p {
   width: 100%;
 }
 
+.container .fa {
+  font-size: 20px;
+  color: #fc0;
+  cursor: pointer;
+}
+
+.recommends {
+  display: flex;
+}
+
+.star-rating {
+  position: relative;
+  /* width: 5em; */
+  height: 1em;
+  font-size: 25px;
+}
+.star-rating-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  color: #ffcc33;
+}
+.star-rating-back {
+  color: #ccc;
+}
+
+.average-score {
+  display: flex;
+}
+.average-score-display {
+  margin-top: 7px;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+
+
 @media (min-width: 665px) {
 
   .side-bar, #open {

@@ -9,4 +9,20 @@ class Article < ApplicationRecord
   has_many   :likes
   has_many   :liking_users, through: :likes, source: :user
   has_many   :favorites, dependent: :destroy
+
+  def avg_score
+    unless self.comments.empty?
+      comments.average(:recommend).round(1).to_f
+    else
+      0.0
+    end
+  end
+
+  def review_score_percentage
+    unless self.comments.empty?
+      comments.average(:recommend).round(1).to_f*100/5
+    else
+      0.0
+    end
+  end
 end

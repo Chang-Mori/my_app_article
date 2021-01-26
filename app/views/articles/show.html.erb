@@ -31,6 +31,15 @@
   <%= render partial: 'likes/like',locals: { article: @article } %>
   <%= render partial: 'favorites/favorite', locals: { article: @article } %>
   <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
+  <div class="content average-score">
+    <div class="star-rating mb-2">
+      <div class="star-rating-front" style="width: <%= @article.review_score_percentage %>%">★★★★★</div>
+      <div class="star-rating-back">★★★★★</div>
+    </div>
+    <div class="average-score-display ml-3 pt-2">
+      <%= @article.avg_score %>点（<%= @article.comments.count %>件のレビュー）
+    </div>
+  </div>
 
   <div class="container">
     <div class="comments">
@@ -39,12 +48,35 @@
         <p>
           <strong><%= link_to comment.user.name, "/users/#{comment.user_id}" %>：</strong>
           <%= comment.text %>
+          <div class="content average-score">
+            <div class="star-rating mb-2">
+              <div class="star-rating-front" style="width: <%= comment.recommend*100/5 %>%">★★★★★</div>
+              <div class="star-rating-back">★★★★★</div>
+            </div>
+            <div class="average-score-display ml-3 pt-2">
+              <%= comment.recommend %>点
+            </div>
+          </div>
         </p>
       <% end %>
     </div>
     <% if user_signed_in? %>
       <%= form_with(model: [@article, @comment], local: true) do |form| %>
         <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
+        <%= form.label :recommend, "オススメ", class:'col-md-3 col-form-label'%>
+        <%= form.hidden_field :recommend, id: :recommend_star %>
+  
+        <div class="recommends mb-1">
+          <div class="ratings mb-1">
+            <span class="fa fa-star-o" id="star"></span>
+            <span class="fa fa-star-o" id="star"></span>
+            <span class="fa fa-star-o" id="star"></span>
+            <span class="fa fa-star-o" id="star"></span>
+            <span class="fa fa-star-o" id="star"></span>
+          </div>
+          <div class="ml-3 rating-value-display"><span id="rating-value-display">0</span>/5</div>
+        </div>
+
         <%= form.submit "SEND" %>
       <% end %>
     <% else %>

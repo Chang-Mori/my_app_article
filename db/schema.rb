@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2021_01_22_123034) do
     t.integer "user_id"
     t.integer "article_id"
     t.text "text", null: false
+    t.float "recommend"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

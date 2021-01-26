@@ -4,6 +4,7 @@ class CreateComments < ActiveRecord::Migration[6.0]
       t.integer :user_id,     foreign_key: true
       t.integer :article_id,  foreign_key: true
       t.text    :text,        null: false
+      t.float   :recommend
       t.timestamps
     end
   end
