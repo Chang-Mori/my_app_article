@@ -15,7 +15,10 @@ class User < ApplicationRecord
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :user
 
+  has_one_attached :image
+
   validates :name, presence: true, length: { maximum: 6 }
+  validates :profile, length: { maximum: 250 }
 
   def follow(other_user)
     return if self == other_user

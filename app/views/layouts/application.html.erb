@@ -19,6 +19,7 @@
         <% if user_signed_in? %>
           <div class="user_nav grid-6">
             <span><%= current_user.name %>
+            <%= image_tag current_user.image, class: "icon_image" if current_user.image.attached? %>
               <ul class="user__info">
                 <li>
                   <%= link_to "マイページ", "/users/#{current_user.id}" %>

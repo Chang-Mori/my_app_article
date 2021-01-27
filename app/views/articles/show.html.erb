@@ -30,7 +30,9 @@
 
   <%= render partial: 'likes/like',locals: { article: @article } %>
   <%= render partial: 'favorites/favorite', locals: { article: @article } %>
+  <% if user_signed_in? %>
   <%= render partial: 'relationships/follow_button', locals: { user: @user } %>
+  <% end %>
   <div class="content average-score">
     <div class="star-rating mb-2">
       <div class="star-rating-front" style="width: <%= @article.review_score_percentage %>%">★★★★★</div>

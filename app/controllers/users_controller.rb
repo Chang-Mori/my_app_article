@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     favorites = Favorite.where(user_id: current_user.id).pluck(:article_id)
     @favorite_list = Article.find(favorites)
     @user = User.find(params[:id])
+    @image = user.image
+    @profile = user.profile
   end
 
   def followings
@@ -26,5 +28,9 @@ class UsersController < ApplicationController
   private
   def set_rank
     @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(5).pluck(:article_id))
+  end
+
+  def user_params
+    params.require(:user).permit(:id, :name, :email, :image, :profile)
   end
 end

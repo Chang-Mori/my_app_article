@@ -50,3 +50,6 @@
   <%= link_to "フォロワー: #{@user.followers.count}", followers_user_path(@user.id)%>
 <%# </div> %>
 </div>
+<% if @image.present?%>
+<%= image_tag current_user.image, class: "icon_image" if current_user.image.attached? %>
+<% end %>

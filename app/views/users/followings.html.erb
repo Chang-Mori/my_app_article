@@ -1,6 +1,10 @@
 <div class="follow-lists">
 <p><%= @name %>さんのフォロー一覧</p>
   <% @users.each do |user| %>
-    <%= user.name %>
+    <a href="/users/<%= user.id %>">
+      <%= user.name %>
+      <%= image_tag user.image, class: "icon_image" if user.image.attached? %>
+    </a>
+    <%= render partial: 'relationships/follow_button', locals: { user: user } %>
   <% end %>
 </div>

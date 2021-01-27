@@ -783,7 +783,7 @@ header.header .user_nav span {
   display: block;
   float: left;
   margin-left: 30px;
-  width: 150px;
+  width: 180px;
   height: 50px;
   font-size: 1em;
   cursor: pointer;
@@ -791,7 +791,7 @@ header.header .user_nav span {
 }
 
 header.header .user_nav span:after {
-  content: '▼';
+  /* content: '▼'; */
   font-size: .7em;
   margin-left: -4px;
 }
@@ -1223,6 +1223,10 @@ footer p {
   left: 280px;
 }
 
+.follow-list {
+  display: flex;
+}
+
 .content_post_area {
   display: flex;
 }
@@ -1270,7 +1274,13 @@ footer p {
   font-size: 16px;
 }
 
-
+.icon_image {
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  object-fit: cover;
+  cursor: pointer;
+}
 
 @media (min-width: 665px) {
 
