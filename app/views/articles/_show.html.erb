@@ -28,7 +28,6 @@
     <% end %>
   </div>
 
-  <%= render partial: 'likes/like',locals: { article: @article } %>
   <%= render partial: 'favorites/favorite', locals: { article: @article } %>
   <% if user_signed_in? %>
   <%= render partial: 'relationships/follow_button', locals: { user: @user } %>

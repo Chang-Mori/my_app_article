@@ -738,7 +738,7 @@ header.header div.header__bar.row div.grid-6 a.post:hover {
 header.header {
   padding: 10px;
   border-bottom: 1px solid #D8D8D8;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.97);
   position: fixed;
   top: 0;
   left: 0;
@@ -859,10 +859,11 @@ div.contents.row .new_user {
 }
 
 div.contents.row div.content_post {
-  margin: 20px 0;
+  margin: 20px 20px;
   padding: 30px;
   position: relative;
-  height: 250px;
+  width: 350px;
+  height: 400px;
   color: #fff;
   background-size: cover;
   background-position: center center;
@@ -1252,7 +1253,7 @@ footer p {
   position: relative;
   /* width: 5em; */
   height: 1em;
-  font-size: 25px;
+  font-size: 18px;
 }
 .star-rating-front {
   position: absolute;
@@ -1282,6 +1283,53 @@ footer p {
   cursor: pointer;
 }
 
+.article-image{
+  /* position: relative; */
+  /* height: 200px; */
+}
+.article-images{
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+#mask {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+}
+
+#modal {
+  background: #fff;
+  position: fixed;
+  top: 10vh;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transform: translate(0, 0) scale(1);
+  transition: 0.2s;
+  z-index: 200;
+  width: 600px;
+  padding: 20px;
+  border-radius: 4px;
+  height: 1000px;
+}
+
+#mask.hidden{
+  opacity: 0.3;
+  visibility: hidden;
+}
+
+#modal.hidden {
+  opacity: 0.3;
+  visibility: hidden;
+  transform: translate(0, 0) scale(0.8);
+}
+
 @media (min-width: 665px) {
 
   .side-bar, #open {
@@ -1293,6 +1341,9 @@ footer p {
   }
 
   .row {
-    margin-left: 30px;
+    margin: 0 auto;
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
   }
 }

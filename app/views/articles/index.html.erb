@@ -1,6 +1,8 @@
+<% unless user_signed_in? && current_user.id %>
 <div class="wrapper contents-title">
   <%= image_tag "mechanics-3258935_1280.jpg" %>
 </div>
+<% end %>
 <div class="content_post_area">
   <div class="pc-side-bar">
     <ul class="side-accordion-menu">
@@ -25,5 +27,8 @@
     <%= article_lists(@articles) %>
   </div>
 </div>
-
+<div id="mask" class="hidden"></div>
+<div id="modal" class="hidden">
+  <p>モーダルウィンドウ</p>
+</div>
 <div id="scroll-top">TOP</div>

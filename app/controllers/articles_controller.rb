@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :destroy]
   before_action :move_to_index, except: [:index, :show, :search]
   before_action :search_article, only: [:index, :search]
-  before_action :set_article_rank, only: [:index, :new, :show]
+  before_action :set_article_rank, only: [:index, :new, :show, :destroy]
 
   def index
     @articles = Article.includes(:user).order("created_at DESC")
@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   def create
     @article = ArticlesTag.new(article_params)
     if @article.valid?
-      @article.save
+    @article.save
       return redirect_to articles_path
     else
       render :new
@@ -27,6 +27,11 @@ class ArticlesController < ApplicationController
     @comment = Comment.new
     @comments = @article.comments.includes(:user).order("created_at DESC")
     @user = Article.find(params[:id]).user
+    @favorite = Article.find(params[:id]).favorites
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
@@ -39,7 +44,7 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article.destroy data: { confirm: "削除してもよろしいですか？" }
+    @article.destroy
   end
 
   def search
@@ -56,7 +61,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:articles_tag).permit(:title, :text, :genre_id, :tag_name, images: []).merge(user_id: current_user.id)
+    params.require(:articles_tag).permit(:title, :text, :genre_id, :image, :tag_name ).merge(user_id: current_user.id)
   end
 
   def set_article

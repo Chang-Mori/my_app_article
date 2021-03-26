@@ -13,7 +13,7 @@
                 <%= link_to '編集', edit_article_path(article.id), method: :get %>
               </li>
               <li>
-                <%= link_to '削除', article_path(article.id), method: :delete %>
+                <%= link_to '削除', article_path(article.id), method: :delete, data: { confirm: "削除してもよろしいですか？" } %>
               </li>
             <% end %>
           </ul>
@@ -22,6 +22,11 @@
       <span class="name">
       <%= article.title %>
     </span>
+    <div class="article-image">
+  <%# <% article.image.each do |image| %>
+      <%= image_tag article.image.variant(resize: '200x200'), class: 'article-images' if article.image.attached? %>
+  <%# <% end %>
+</div>
     </div>
   <% end %>
 <%# <div class="my_favorites"> %>

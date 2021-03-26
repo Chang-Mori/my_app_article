@@ -1,44 +1,52 @@
-<div class="content_post" >
-  <div class="more">
-    <span><%= image_tag 'arrow_top.png' %></span>
-    <ul class="more_list">
-      <li>
-        <%= link_to '詳細', article_path(article.id), method: :get %>
-      </li>
-    </ul>
-  </div>
-  <p><%= article.text %>
-  <span class="name">
-    <a href="/users/<%= article.user.id %>">
-      <span>投稿者</span><%= article.user.name %>
-    </a>
-    <%= article.title %>
-  </span>
-  <span class="article-genre">
-    <%= article.genre.name %>
-  </span>
-  <div class="article-date">
-    <%= l article.created_at %>
-  </div>
+
+  <div class="content_post" >
+    <div class="more">
+      <span><%= image_tag 'arrow_top.png' %></span>
+      <ul class="more_list">
+        <li>
+          <%# <%= link_to '詳細', article_path(article.id), method: :get %>
 
 
-  <% article.images.each do |image| %>
-      <%= image_tag image.variant(resize: '200x200'), class: 'article-images' %>
-  <% end %>
-  <% article.tags.each do |tag| %>
-    #<%= tag.tag_name %>
-  <% end %>
-</div>
+        </li>
+      </ul>
+    </div>
+    <%= link_to article_path(article.id), method: :get, remote: true do %>
+      <p><%= article.text %>
+    <% end %>
+    <span class="name">
+      <a href="/users/<%= article.user.id %>">
+        <span>投稿者</span><%= article.user.name %>
+      </a>
+      <%= article.title %>
+    </span>
+    <span class="article-genre">
+      <%= article.genre.name %>
+    </span>
+    <div class="article-date">
+      <%= l article.created_at %>
+    </div>
 
 
-<%= render partial: 'likes/like',locals: { article: article } %>
-<%= render partial: 'favorites/favorite', locals: { article: article } %>
-<div class="content average-score">
-  <div class="star-rating mb-2">
-    <div class="star-rating-front" style="width: <%= article.review_score_percentage %>%">★★★★★</div>
-    <div class="star-rating-back">★★★★★</div>
+    <div class="article-image">
+      <%# <% article.image.each do |image| %>
+          <%= image_tag article.image.variant(resize: '400x400'), class: 'article-images' if article.image.attached? %>
+      <%# <% end %>
+    </div>
+
+    <% article.tags.each do |tag| %>
+      #<%= tag.tag_name %>
+    <% end %>
+    <%= render partial: 'favorites/favorite', locals: { article: article } %>
+    <div class="content average-score">
+      <div class="star-rating mb-2">
+        <div class="star-rating-front" style="width: <%= article.review_score_percentage %>%">★★★★★</div>
+        <div class="star-rating-back">★★★★★</div>
+      </div>
+      <div class="average-score-display ml-3 pt-2">
+        <%= article.avg_score %>点（<%= article.comments.count %>件のレビュー）
+      </div>
+    </div>
   </div>
-  <div class="average-score-display ml-3 pt-2">
-    <%= article.avg_score %>点（<%= article.comments.count %>件のレビュー）
-  </div>
-</div>
+
+<%# <%= render partial: 'likes/like',locals: { article: article } %>
+

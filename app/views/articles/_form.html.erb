@@ -5,7 +5,8 @@
   <%= form.text_field :tag_name, class:"input-tag"%>
   <div id="search-result"></div>
   <%= form.collection_select(:genre_id, Genre.all, :id, :name, {}, {class:"genre-select"}) %>
-  <%= form.file_field :images, name: 'article[images][]', class: 'hidden' %>
+  <%# <%= form.label :image %>
+  <%= form.file_field :image %>
   <div id="image-list"></div>
   <%# <% @article.images.each do |image| %>
   <%#   <%= image_tag image.variant(resize: '200x200'), class: 'article-images' %>
